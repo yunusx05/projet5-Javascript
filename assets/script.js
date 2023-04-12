@@ -85,6 +85,7 @@ function createDot(){
 createDot();
 console.log(createDots)
 
+000000
 
 /* Link bullet to image (dot) */
 
