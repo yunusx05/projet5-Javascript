@@ -83,7 +83,7 @@ function createDot(){
 	
 
 createDot();
-console.log(createDot)
+console.log(createDots)
 
 
 /* Link bullet to image (dot) */
