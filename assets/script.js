@@ -85,7 +85,6 @@ function createDot(){
 createDot();
 console.log(createDots)
 
-000000
 
 /* Link bullet to image (dot) */
 
@@ -101,6 +100,8 @@ function dotSwitch() {
  dotSwitch();
 
 console.log(createDot)
+
+setInterval('slideSuivant(1)',4000)
 
 
 
