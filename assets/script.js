@@ -101,7 +101,8 @@ function dotSwitch() {
 
 console.log(createDot)
 
-setInterval('slideSuivant(1)',4000)
+setInterval('slideSuivant(1)',4000
+)
 
 
 
