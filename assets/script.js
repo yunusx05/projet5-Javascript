@@ -18,92 +18,72 @@ const slides = [
 
 ]
 
-let num = 0;
 
 const suivant = document.querySelector(' .arrow_right')
 const precedent = document.querySelector(' .arrow_left')
 const slideImg = document.querySelector('.banner-img')
 const TextImg = document.querySelector('#banner > p');
-
-
-
-
-
-
-
+let num = 0;
 
 /* function prev / next */
 
 function slideSuivant() {
 	num = num + 1;
 	if (num > slides.length - 1) {
-		num = 0;
+		num = 0;	
 	}
-	slideImg.src = "./assets/images/slideshow/" + slides[num].image;
-	TextImg.innerHTML = slides[num].tagLine;
+	changeSlide()
 
 }
 
-suivant.addEventListener('click', slideSuivant)
+function changeSlide(){
+	
+	slideImg.src = "./assets/images/slideshow/" + slides[num].image;
+	TextImg.innerHTML = slides[num].tagLine;
+	dotSwitch()	
+
+}
 
 function slideprecedent() {
 	num = num - 1;
 	if (num < 0) {
 		num = slides.length - 1;
-
+		
 	}
-	slideImg.src = "./assets/images/slideshow/" + slides[num].image;
-	TextImg.innerHTML = slides[num].tagLine;
-
-
+	changeSlide()
 }
 
-precedent.addEventListener('click', slideprecedent)
-
-
 /* Creation dots */
-
-
 function createDot() {
-
 	const dots = document.querySelector('.dots');
 
-	for (let j = 0; j < slides.length; j++) {
+	for (let i = 0; i < slides.length; i++) {
 		const dot = document.createElement('div');
 		dot.classList.add('dot');
 		dots.appendChild(dot);
 
-		if (j === 0) {
-			dots.children[j].classList.add('dot_selected');
+		if (i === 0) {
+			dots.children[i].classList.add('dot_selected');
 		}
 	}
-
-
 }
 
+/* Link dot to image  */
+
+function dotSwitch() {
+	const dots = document.querySelectorAll('.dot');
+	for (let i = 0; i < dots.length; i++) {
+		dots[i].classList.remove('dot_selected');
+	}
+	dots[num].classList.add('dot_selected');
+ }
+
+
+suivant.addEventListener('click', slideSuivant)
+precedent.addEventListener('click', slideprecedent)
 createDot();
 
 
-console.log(createDot)
-
-
-
-
-/* Link bullet to image (dot) */
-
-function dotSwitch() {
-	const dot = document.querySelector('.dot');
-
-	for (let i = 0; i < dot.length; i++) {
-		dot[i].classList.remove('dot_selected');
-		dot[i].classList.add('dot');
-	}
-}
-dotSwitch();
-
-console.log(dotSwitch)
-
-setInterval('slideprecedent(1)', 5000)
 
 
 
