@@ -19,51 +19,52 @@ const slides = [
 ]
 
 
-const suivant = document.querySelector(' .arrow_right')
-const precedent = document.querySelector(' .arrow_left')
+const next = document.querySelector(' .arrow_right')
+const previous = document.querySelector(' .arrow_left')
 const slideImg = document.querySelector('.banner-img')
 const TextImg = document.querySelector('#banner > p');
-let num = 0;
+let firstNumber = 0;
 
 /* function prev / next */
 
-function slideSuivant() {
-	num = num + 1;
-	if (num > slides.length - 1) {
-		num = 0;	
+function nextSlide() {
+	firstNumber = firstNumber + 1;
+	if (firstNumber > slides.length - 1) {
+		firstNumber = 0;	
 	}
-	changeSlide()
+	SlideCycle()
 
 }
 
-function changeSlide(){
+function SlideCycle(){
 	
-	slideImg.src = "./assets/images/slideshow/" + slides[num].image;
-	TextImg.innerHTML = slides[num].tagLine;
+	slideImg.src = "./assets/images/slideshow/" + slides[firstNumber].image;
+	TextImg.innerHTML = slides[firstNumber].tagLine;
 	dotSwitch()	
 
 }
 
-function slideprecedent() {
-	num = num - 1;
-	if (num < 0) {
-		num = slides.length - 1;
+function previousslide() {
+	firstNumber = firstNumber - 1;
+	if (firstNumber < 0) {
+		firstNumber = slides.length - 1;
 		
 	}
-	changeSlide()
+	SlideCycle()
 }
 
 /* Creation dots */
+
 function createDot() {
-	const dots = document.querySelector('.dots');
+	const dotsContainer = document.querySelector('.dots');
 
 	for (let i = 0; i < slides.length; i++) {
 		const dot = document.createElement('div');
 		dot.classList.add('dot');
-		dots.appendChild(dot);
+		dotsContainer.appendChild(dot);
 
 		if (i === 0) {
-			dots.children[i].classList.add('dot_selected');
+			dotsContainer.children[i].classList.add('dot_selected');
 		}
 	}
 }
@@ -75,12 +76,12 @@ function dotSwitch() {
 	for (let i = 0; i < dots.length; i++) {
 		dots[i].classList.remove('dot_selected');
 	}
-	dots[num].classList.add('dot_selected');
+	dots[firstNumber].classList.add('dot_selected');
  }
 
 
-suivant.addEventListener('click', slideSuivant)
-precedent.addEventListener('click', slideprecedent)
+next.addEventListener('click', nextSlide)
+previous.addEventListener('click', previousslide)
 createDot();
 
 
