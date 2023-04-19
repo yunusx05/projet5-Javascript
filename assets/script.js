@@ -37,7 +37,7 @@ function nextSlide() {
 }
 
 function previousSlide() {
-	initialtNumber = initialNumber - 1;
+	initialNumber = initialNumber - 1;
 	if (initialNumber < 0) {
 		initialNumber = slides.length - 1;
 		
