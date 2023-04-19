@@ -23,35 +23,37 @@ const next = document.querySelector(' .arrow_right')
 const previous = document.querySelector(' .arrow_left')
 const slideImg = document.querySelector('.banner-img')
 const TextImg = document.querySelector('#banner > p');
-let firstNumber = 0;
+let initialNumber = 0;
 
 /* function prev / next */
 
 function nextSlide() {
-	firstNumber = firstNumber + 1;
-	if (firstNumber > slides.length - 1) {
-		firstNumber = 0;	
+	initialNumber = initialNumber + 1;
+	if (initialNumber > slides.length - 1) {
+		initialNumber = 0;	
 	}
-	SlideCycle()
+	slideCycle()
 
 }
 
-function SlideCycle(){
+function previousSlide() {
+	initialtNumber = initialNumber - 1;
+	if (initialNumber < 0) {
+		initialNumber = slides.length - 1;
+		
+	}
+	slideCycle()
+}
+
+
+function slideCycle(){
 	
-	slideImg.src = "./assets/images/slideshow/" + slides[firstNumber].image;
-	TextImg.innerHTML = slides[firstNumber].tagLine;
+	slideImg.src = "./assets/images/slideshow/" + slides[initialNumber].image;
+	TextImg.innerHTML = slides[initialNumber].tagLine;
 	dotSwitch()	
 
 }
 
-function previousslide() {
-	firstNumber = firstNumber - 1;
-	if (firstNumber < 0) {
-		firstNumber = slides.length - 1;
-		
-	}
-	SlideCycle()
-}
 
 /* Creation dots */
 
@@ -76,12 +78,12 @@ function dotSwitch() {
 	for (let i = 0; i < dots.length; i++) {
 		dots[i].classList.remove('dot_selected');
 	}
-	dots[firstNumber].classList.add('dot_selected');
+	dots[initialNumber].classList.add('dot_selected');
  }
 
 
 next.addEventListener('click', nextSlide)
-previous.addEventListener('click', previousslide)
+previous.addEventListener('click', previousSlide)
 createDot();
 
 
